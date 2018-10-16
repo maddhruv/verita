@@ -1,9 +1,21 @@
 // Candidate Complaint Controller
+import randomstring from 'randomstring'
+import db from '../db'
 
 var CandidateComplaintController = {}
 
-CandidateComplaintController.create = function (aadhar_id, username, booth_id, complaint, image) {
+CandidateComplaintController.create = function (aadharId, username, boothId, complaint, cb) {
   // create a complaint
+
+  const complaintData = {
+    aadharId,
+    boothId,
+    username,
+    complaint
+  }
+  const candidateComplaintDB = db.ref('/candidateComplaint/' + randomstring.generate(5))
+  candidateComplaintDB.update(complaintData)
+  cb(complaintData)
 }
 
 CandidateComplaintController.read = function (id) {
