@@ -1,5 +1,4 @@
 import React from 'react'
-import nodeMailer from 'nodemailer'
 
 import Paper from '@material-ui/core/Paper'
 import Typography from '@material-ui/core/Typography'
@@ -72,28 +71,6 @@ export default class Booth extends React.Component {
     console.log(this.state.boothComplaint)
     BoothComplaintController.create(aadharId, this.props.match.params.id, this.state.boothComplaint, data => {
       console.log(data)
-      let transporter = nodeMailer.createTransport({
-        host: 'smtp.gmail.com',
-        port: 465,
-        secure: true,
-        auth: {
-          user: 'rawat.yash166@gmail.com',
-          pass: 'yashrawat123'
-        }
-      })
-      let mailOptions = {
-        from: 'rawat.yash166@gmail.com', // sender address
-        to: 'dhruvjainpenny@gmail.com', // list of receivers
-        subject: 'Hello', // Subject line
-        text: 'WOrld', // plain text body
-        html: '<b>NodeJS Email Tutorial</b>' // html body
-      }
-      transporter.sendMail(mailOptions, (error, info) => {
-        if (error) {
-          return console.log(error)
-        }
-        console.log('Message %s sent: %s', info.messageId, info.response)
-      })
     })
     this.triggerBooth()
   }
