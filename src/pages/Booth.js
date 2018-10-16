@@ -4,12 +4,15 @@ import Paper from '@material-ui/core/Paper'
 import Typography from '@material-ui/core/Typography'
 import Button from '@material-ui/core/Button'
 import CircularProgress from '@material-ui/core/CircularProgress'
+import Divider from '@material-ui/core/Divider'
+import Grid from '@material-ui/core/Grid'
 
 // import { GoogleMap } from 'react-google-maps'
 
 import BoothComplaint from '../components/BoothComplaint'
 import CandidateComplaint from '../components/CandidateComplaint'
 import BoothController from '../controllers/BoothController'
+import CandidateController from '../controllers/CandidateController'
 import BoothComplaintController from '../controllers/BoothComplaintController'
 import CandidateComplaintController from '../controllers/CandidateComplaintController'
 
@@ -27,7 +30,8 @@ export default class Booth extends React.Component {
       boothOpen: false,
       candidateOpen: false,
       boothComplaint: null,
-      candidateComplaint: null
+      candidateComplaint: null,
+      can: []
     }
     this.triggerBooth = this.triggerBooth.bind(this)
     this.onBoothChange = this.onBoothChange.bind(this)
@@ -40,6 +44,14 @@ export default class Booth extends React.Component {
   componentWillMount () {
     BoothController.read(this.props.match.params.id, (data) => {
       this.setState({ booth: data })
+      // const can = []
+      // data.candidates.forEach(candidate => {
+      //   CandidateController.read(candidate, c => {
+      //     c.username = candidate
+      //     can.push(c)
+      //     this.setState({ can })
+      //   })
+      // })
     })
   }
 
@@ -85,18 +97,39 @@ export default class Booth extends React.Component {
 
   render () {
     let googleMaps = null
-    let container = <CircularProgress />
+    let candis = []
+    let container = <CircularProgress className='loader' />
+    if (this.state.can.length > 0) {
+      candis.push(this.state.can)
+    }
     if (this.state.booth.name) {
       container = (
         <>
-          <Typography variant='h2'>
-            {this.state.booth.name}
-          </Typography>
-          <Typography variant='h5'>
-            {this.state.booth.address}
-          </Typography>
-          <Typography variant='h5'>
-            {this.state.booth.city}
+          <Grid container spacing={8}>
+            <Grid item sm={8} md={8} lg={8}>
+              <Typography variant='h2'>
+                {this.state.booth.name}
+              </Typography>
+              <Typography variant='h6'>
+                {this.state.booth.address}
+              </Typography>
+              <Typography variant='h6'>
+                {this.state.booth.city}
+              </Typography>
+            </Grid>
+            <Grid item s={4} md={4} lg={4}>
+              <Typography>
+                Ammenities available:
+              </Typography>
+              {this.state.booth.amenities.map(a => {
+                return <li>{a}</li>
+              })}
+            </Grid>
+          </Grid>
+          <Divider />
+          <br />
+          <Typography variant='subheading'>
+            Incharge: {this.state.booth.incharge}
           </Typography>
           { googleMaps }
           <Button variant='contained' color='secondary' className='button' onClick={this.triggerBooth}>
@@ -117,6 +150,7 @@ export default class Booth extends React.Component {
             onChange={this.onCandidateChange}
             onSubmit={this.candidateSubmit}
           />
+          {candis}
         </>
       )
     }

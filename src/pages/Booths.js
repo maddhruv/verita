@@ -3,6 +3,7 @@ import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography'
 import Card from '@material-ui/core/Card'
 import CardContent from '@material-ui/core/CardContent'
+import CircularProgress from '@material-ui/core/CircularProgress'
 
 import BoothController from '../controllers/BoothController'
 
@@ -21,13 +22,14 @@ export default class Booths extends React.Component {
   }
 
   render () {
-    console.log(this.state.booths)
-    var booths = []
+    var container = []
     var boothDetails = {}
+    let loader = <CircularProgress className='loader' />
     if (this.state.booths) {
+      loader = null
       for (var booth in this.state.booths) {
         boothDetails = this.state.booths[booth]
-        booths.push(
+        container.push(
           <Grid item sm={3} md={3} lg={3}>
             <a href={`/booth/${booth}`}>
               <Card className='booth-card'>
@@ -47,7 +49,8 @@ export default class Booths extends React.Component {
     }
     return (
       <Grid container spacing={8} className='container'>
-        {booths}
+        {container}
+        {loader}
       </Grid>
     )
   }

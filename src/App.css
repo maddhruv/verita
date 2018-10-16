@@ -3,11 +3,13 @@
 }
 a{
   text-decoration: none;
+  color: inherit;
 }
 .container {
-  width: 80%;
+  width: 60%;
   padding: 20px;
   margin: 30px auto;
+  min-height: 70vh;
 }
 .booth-card {
   padding: 5px;
@@ -15,4 +17,24 @@ a{
 }
 .button {
   margin: 10px !important;
+}
+.loader {
+  margin: 0 auto;
+  position: absolute;
+  top: 40%;
+  left: 50%;
+}
+.avatar {
+  float: right;
+  border: 2px solid lightblue;
+  width: 180px;
+  height: 200px;
+}
+.party {
+  line-height: 30px;
+  font-size: 30px;
+}
+.logo {
+  width: 30px;
+  height: 30px;
 }
