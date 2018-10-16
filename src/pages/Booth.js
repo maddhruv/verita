@@ -1,4 +1,5 @@
 import React from 'react'
+import sgMail from '@sendgrid/mail'
 
 import Paper from '@material-ui/core/Paper'
 import Typography from '@material-ui/core/Typography'
@@ -17,6 +18,8 @@ import BoothComplaintController from '../controllers/BoothComplaintController'
 import CandidateComplaintController from '../controllers/CandidateComplaintController'
 
 const aadharId = '6654654654'
+const apikey = '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'
+sgMail.setApiKey(apikey)
 
 export default class Booth extends React.Component {
   constructor () {
@@ -71,6 +74,14 @@ export default class Booth extends React.Component {
     console.log(this.state.boothComplaint)
     BoothComplaintController.create(aadharId, this.props.match.params.id, this.state.boothComplaint, data => {
       console.log(data)
+      const msg = {
+      to: 'dhruvjainpenny@gmail.com',
+      from: 'shivsonic05@gmail.com',
+      subject: 'complaint regarding booth',
+      text: JSON.stringify(data),
+      html: JSON.stringify(data)
+    };
+    sgMail.send(msg);
     })
     this.triggerBooth()
   }
