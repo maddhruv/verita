@@ -25,8 +25,11 @@ CandidateComplaintController.read = function (id) {
   // check https://www.npmjs.com/package/randomstring
 }
 
-CandidateComplaintController.list = function (username) {
+CandidateComplaintController.list = function (cb) {
   // list all complaints against a candidate
+  db.ref('/candidateComplaint').once('value', snap => {
+    cb(snap.val())
+  })
 }
 
 export default CandidateComplaintController

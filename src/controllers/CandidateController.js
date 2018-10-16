@@ -15,7 +15,7 @@ CandidateController.read = function (username, cb) {
   })
 }
 
-CandidateController.list = function (booth_id) {
+CandidateController.list = function () {
   // list all candidates for a booth
 }
 
