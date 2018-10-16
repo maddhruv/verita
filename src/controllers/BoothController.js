@@ -9,11 +9,11 @@ BoothController.create = function (id, name, address, city, incharge, location, 
   // create a booth
 }
 
-BoothController.read = function (id) {
+BoothController.read = function (id, cb) {
   // read a booth
   boothDB.once('value')
     .then((snapshot) => {
-      console.log(snapshot.val())
+      cb(snapshot.val()[id])
     })
 }
 

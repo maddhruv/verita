@@ -1,3 +1,12 @@
 .title {
   color: white !important;
 }
+.container {
+  width: 80%;
+  padding: 20px;
+  margin: 30px auto;
+}
+.booth-card {
+  padding: 5px;
+  margin-bottom: 10px;
+}
