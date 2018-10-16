@@ -1,6 +1,9 @@
 .title {
   color: white !important;
 }
+a{
+  text-decoration: none;
+}
 .container {
   width: 80%;
   padding: 20px;

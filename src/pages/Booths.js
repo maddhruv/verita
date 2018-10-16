@@ -1,5 +1,5 @@
 import React from 'react'
-import Paper from '@material-ui/core/Paper'
+import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography'
 import Card from '@material-ui/core/Card'
 import CardContent from '@material-ui/core/CardContent'
@@ -28,23 +28,27 @@ export default class Booths extends React.Component {
       for (var booth in this.state.booths) {
         boothDetails = this.state.booths[booth]
         booths.push(
-          <Card className='booth-card'>
-            <CardContent>
-              <Typography variant='h5'>
-                {boothDetails.name}
-              </Typography>
-              <Typography variant='caption'>
-                {boothDetails.address}
-              </Typography>
-            </CardContent>
-          </Card>
+          <Grid item sm={3} md={3} lg={3}>
+            <a href={`/booth/${booth}`}>
+              <Card className='booth-card'>
+                <CardContent>
+                  <Typography variant='h5'>
+                    {boothDetails.name}
+                  </Typography>
+                  <Typography variant='caption'>
+                    {boothDetails.address}, {boothDetails.city}
+                  </Typography>
+                </CardContent>
+              </Card>
+            </a>
+          </Grid>
         )
       }
     }
     return (
-      <Paper className='container'>
+      <Grid container spacing={8} className='container'>
         {booths}
-      </Paper>
+      </Grid>
     )
   }
 }
