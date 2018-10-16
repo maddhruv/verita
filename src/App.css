@@ -11,6 +11,12 @@ a{
   margin: 30px auto;
   min-height: 70vh;
 }
+.home {
+  width: 60%;
+  padding: 100px;
+  margin: 30px auto;
+  min-height: 70vh;
+}
 .booth-card {
   padding: 5px;
   margin-bottom: 10px;
@@ -37,4 +43,12 @@ a{
 .logo {
   width: 30px;
   height: 30px;
+}
+.grid>*{
+  padding: 20px;
+}
+li{
+  text-transform: capitalize;
+  font-size: 24px;
+  color: purple;
 }

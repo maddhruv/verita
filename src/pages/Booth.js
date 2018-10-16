@@ -138,6 +138,19 @@ export default class Booth extends React.Component {
           <Button variant='contained' color='secondary' className='button' onClick={this.triggerCandidate}>
             Complaint against a candidate
           </Button>
+          <Divider />
+          <Typography variant='h4'>
+              Candidates
+          </Typography>
+          {this.state.booth.candidates.map(c => {
+            return (
+              <li>
+                <a href={`/candidate/${c}`}>
+                  {c.replace('_', ' ')}
+                </a>
+              </li>
+            )
+          })}
           <BoothComplaint
             open={this.state.boothOpen}
             handleClose={this.triggerBooth}
@@ -164,7 +177,7 @@ export default class Booth extends React.Component {
     //   )
     // }
     return (
-      <Paper className='container'>
+      <Paper className='home'>
         {container}
       </Paper>
     )
