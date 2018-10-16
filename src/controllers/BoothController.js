@@ -17,12 +17,11 @@ BoothController.read = function (id) {
     })
 }
 
-BoothController.list = function () {
+BoothController.list = function (cb) {
   // list all booths
-  boothDB.once('value')
-    .then((snapshot) => {
-      return snapshot.val()
-    })
+  boothDB.on('value', (snapshot) => {
+    cb(snapshot.val())
+  })
 }
 
 export default BoothController

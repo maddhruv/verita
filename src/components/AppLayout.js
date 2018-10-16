@@ -9,7 +9,7 @@ export default class AppLayout extends React.Component {
       <>
         <AppBar position='static' color='primary'>
           <Toolbar>
-            <Typography variant='h6' className='title'>
+            <Typography className='title'>
               Verita
             </Typography>
           </Toolbar>
